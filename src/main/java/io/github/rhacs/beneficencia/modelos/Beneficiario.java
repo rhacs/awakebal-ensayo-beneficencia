@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -39,6 +41,10 @@ public class Beneficiario {
      */
     @Column(name = "edad", nullable = false)
     private int edad;
+
+    @ManyToOne
+    @JoinColumn(name = "ciudad_id", nullable = false)
+    private Ciudad ciudad;
 
     // Constructores
     // -----------------------------------------------------------------------------------------
@@ -87,6 +93,13 @@ public class Beneficiario {
         return edad;
     }
 
+    /**
+     * @return la {@link Ciudad}
+     */
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
     // Setters
     // -----------------------------------------------------------------------------------------
 
@@ -109,6 +122,13 @@ public class Beneficiario {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    /**
+     * @param ciudad la {@link Ciudad} a establecer
+     */
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     // Herencias (Object)
