@@ -1,6 +1,7 @@
 package io.github.rhacs.beneficencia.modelos;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -42,9 +44,18 @@ public class Beneficiario {
     @Column(name = "edad", nullable = false)
     private int edad;
 
+    /**
+     * La {@link Ciudad} del {@link Beneficiario}
+     */
     @ManyToOne
     @JoinColumn(name = "ciudad_id", nullable = false)
     private Ciudad ciudad;
+
+    /**
+     * Listado de {@link Ayuda}s que ha recibido el {@link Beneficiario}
+     */
+    @OneToMany(mappedBy = "beneficiario")
+    private Set<Ayuda> ayudas;
 
     // Constructores
     // -----------------------------------------------------------------------------------------
@@ -100,6 +111,13 @@ public class Beneficiario {
         return ciudad;
     }
 
+    /**
+     * @return el listado de {@link Ayuda}s que ha recibido el {@link Beneficiario}
+     */
+    public Set<Ayuda> getAyudas() {
+        return ayudas;
+    }
+
     // Setters
     // -----------------------------------------------------------------------------------------
 
@@ -129,6 +147,13 @@ public class Beneficiario {
      */
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
+    }
+
+    /**
+     * @param ayudas el listado de {@link Ayuda}s a establecer
+     */
+    public void setAyudas(Set<Ayuda> ayudas) {
+        this.ayudas = ayudas;
     }
 
     // Herencias (Object)
