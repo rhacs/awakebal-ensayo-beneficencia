@@ -14,7 +14,7 @@ import io.github.rhacs.beneficencia.Constantes;
 
 @Entity
 @Table(name = Constantes.TABLA_BENEFICIARIOS)
-@SequenceGenerator(allocationSize = 1, initialValue = 1, name = Constantes.SECUENCIA_BENEFICIARIOS)
+@SequenceGenerator(allocationSize = 1, initialValue = 1, name = Constantes.SECUENCIA_BENEFICIARIOS, sequenceName = Constantes.SECUENCIA_BENEFICIARIOS)
 public class Beneficiario {
 
     // Atributos
