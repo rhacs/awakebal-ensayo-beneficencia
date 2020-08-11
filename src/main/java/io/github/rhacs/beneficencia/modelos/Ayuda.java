@@ -27,7 +27,7 @@ public class Ayuda {
      */
     @Id
     @GeneratedValue(generator = Constantes.SECUENCIA_AYUDAS, strategy = GenerationType.SEQUENCE)
-    @Column(name = "ayuda_id", nullable = false, unique = true, updatable = false)
+    @Column(name = "ayudaid", nullable = false, unique = true, updatable = false)
     private Long id;
 
     /**
@@ -46,7 +46,7 @@ public class Ayuda {
      * {@link Beneficiario} de la {@link Ayuda}
      */
     @ManyToOne
-    @JoinColumn(name = "beneficiario_id", nullable = false)
+    @JoinColumn(name = "beneficiarioid", nullable = false)
     private Beneficiario beneficiario;
 
     // Constructores

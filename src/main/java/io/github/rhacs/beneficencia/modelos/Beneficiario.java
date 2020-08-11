@@ -29,7 +29,7 @@ public class Beneficiario {
      */
     @Id
     @GeneratedValue(generator = Constantes.SECUENCIA_BENEFICIARIOS, strategy = GenerationType.SEQUENCE)
-    @Column(name = "beneficiario_id", nullable = false, unique = true, updatable = false)
+    @Column(name = "beneficiarioid", nullable = false, unique = true, updatable = false)
     private Long id;
 
     /**
@@ -48,7 +48,7 @@ public class Beneficiario {
      * La {@link Ciudad} del {@link Beneficiario}
      */
     @ManyToOne
-    @JoinColumn(name = "ciudad_id", nullable = false)
+    @JoinColumn(name = "ciudadid", nullable = false)
     private Ciudad ciudad;
 
     /**

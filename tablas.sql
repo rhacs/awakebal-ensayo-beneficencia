@@ -3,24 +3,24 @@
 ----------------------------------------------------------------------------------------------------
 
 CREATE TABLE ciudades (
-    ciudad_id NUMBER NOT NULL,
-    nombre_ciudad NVARCHAR2(50) NOT NULL,
+    ciudadid NUMBER NOT NULL,
+    nombreciudad NVARCHAR2(50) NOT NULL,
 
     -- Llave primaria
-    CONSTRAINT ciudades_pk PRIMARY KEY (ciudad_id),
+    CONSTRAINT ciudades_pk PRIMARY KEY (ciudadid),
 
     -- Columnas únicas
-    CONSTRAINT ciudades_uq UNIQUE (nombre_ciudad)
+    CONSTRAINT ciudades_uq UNIQUE (nombreciudad)
 );
 
 -- Secuencia
-CREATE SEQUENCE ciudades_sq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
+CREATE SEQUENCE ciudades_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
 
 -- Disparador
-CREATE OR REPLACE TRIGGER ciudades_tr
+CREATE OR REPLACE TRIGGER ciudades_trg
     BEFORE INSERT ON ciudades FOR EACH ROW
 BEGIN
-    :new.ciudad_id := ciudades_sq.nextval;
+    :new.ciudadid := ciudades_seq.nextval;
 END;
 /
 
@@ -29,26 +29,26 @@ END;
 ----------------------------------------------------------------------------------------------------
 
 CREATE TABLE beneficiarios (
-    beneficiario_id NUMBER NOT NULL,
+    beneficiarioid NUMBER NOT NULL,
     nombre NVARCHAR2(75) NOT NULL,
     edad NUMBER NOT NULL,
-    ciudad_id NUMBER NOT NULL,
+    ciudadid NUMBER NOT NULL,
 
     -- Llave primaria
-    CONSTRAINT beneficiarios_pk PRIMARY KEY (beneficiario_id),
+    CONSTRAINT beneficiarios_pk PRIMARY KEY (beneficiarioid),
 
     -- Llave foránea
-    CONSTRAINT beneficiarios_fk FOREIGN KEY (ciudad_id) REFERENCES ciudades (ciudad_id) ON DELETE CASCADE
+    CONSTRAINT beneficiarios_fk FOREIGN KEY (ciudadid) REFERENCES ciudades (ciudadid) ON DELETE CASCADE
 );
 
 -- Secuencia
-CREATE SEQUENCE beneficiarios_sq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
+CREATE SEQUENCE beneficiarios_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
 
 -- Disparador
-CREATE OR REPLACE TRIGGER beneficiarios_tr
+CREATE OR REPLACE TRIGGER beneficiarios_trg
     BEFORE INSERT ON beneficiarios FOR EACH ROW
 BEGIN
-	:new.beneficiario_id := beneficiarios_sq.nextval;
+    :new.beneficiarioid := beneficiarios_seq.nextval;
 END;
 /
 
@@ -57,26 +57,26 @@ END;
 ----------------------------------------------------------------------------------------------------
 
 CREATE TABLE ayudas (
-    ayuda_id NUMBER NOT NULL,
+    ayudaid NUMBER NOT NULL,
     monto NUMBER NOT NULL,
     motivo NVARCHAR2(25) NOT NULL,
-    beneficiario_id NUMBER NOT NULL,
+    beneficiarioid NUMBER NOT NULL,
 
     -- Llave primaria
-    CONSTRAINT ayudas_pk PRIMARY KEY (ayuda_id),
+    CONSTRAINT ayudas_pk PRIMARY KEY (ayudaid),
 
     -- Llave foránea
-    CONSTRAINT ayudas_fk FOREIGN KEY (beneficiario_id) REFERENCES beneficiarios (beneficiario_id) ON DELETE CASCADE
+    CONSTRAINT ayudas_fk FOREIGN KEY (beneficiarioid) REFERENCES beneficiarios (beneficiarioid) ON DELETE CASCADE
 );
 
 -- Secuencia
-CREATE SEQUENCE ayudas_sq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
+CREATE SEQUENCE ayudas_seq START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE ORDER;
 
 -- Disparador
-CREATE OR REPLACE TRIGGER ayudas_tr
+CREATE OR REPLACE TRIGGER ayudas_trg
     BEFORE INSERT ON ayudas FOR EACH ROW
 BEGIN
-    :new.ayuda_id := ayudas_sq.nextval;
+    :new.ayudaid := ayudas_seq.nextval;
 END;
 /
 

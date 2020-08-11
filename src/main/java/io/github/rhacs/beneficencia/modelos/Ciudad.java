@@ -28,13 +28,13 @@ public class Ciudad {
      */
     @Id
     @GeneratedValue(generator = Constantes.SECUENCIA_CIUDADES, strategy = GenerationType.SEQUENCE)
-    @Column(name = "ciudad_id", nullable = false, unique = true, updatable = false)
+    @Column(name = "ciudadid", nullable = false, unique = true, updatable = false)
     private Long id;
 
     /**
      * Nombre de la {@link Ciudad}
      */
-    @Column(name = "nombre_ciudad", nullable = false, unique = true)
+    @Column(name = "nombreciudad", nullable = false, unique = true)
     private String nombreCiudad;
 
     /**
