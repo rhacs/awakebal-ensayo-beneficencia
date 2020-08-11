@@ -64,6 +64,8 @@
     <!-- Configuración del Administrador de Transacciones -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+    <context:component-scan base-package="io.github.rhacs.beneficiencia" />
+
     <!-- Configuración de los Repositorios -->
     <jpa:repositories base-package="io.github.rhacs.beneficencia.repositorios" />
 
