@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 
 import io.github.rhacs.beneficencia.Constantes;
 
@@ -33,19 +38,23 @@ public class Ayuda {
     /**
      * Monto de la {@link Ayuda}
      */
+    @NotNull
+    @Min(1)
     @Column(name = "monto", nullable = false)
     private Long monto;
 
     /**
      * Motivo de la {@link Ayuda}
      */
+    @NotNull
+    @Size(max = 25)
     @Column(name = "motivo")
     private String motivo;
 
     /**
      * {@link Beneficiario} de la {@link Ayuda}
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "beneficiarioid", nullable = false)
     private Beneficiario beneficiario;
 
