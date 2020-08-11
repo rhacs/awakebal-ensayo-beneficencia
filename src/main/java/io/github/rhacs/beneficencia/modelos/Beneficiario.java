@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.github.rhacs.beneficencia.Constantes;
 
@@ -47,7 +50,7 @@ public class Beneficiario {
     /**
      * La {@link Ciudad} del {@link Beneficiario}
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ciudadid", nullable = false)
     private Ciudad ciudad;
 
@@ -55,6 +58,7 @@ public class Beneficiario {
      * Listado de {@link Ayuda}s que ha recibido el {@link Beneficiario}
      */
     @OneToMany(mappedBy = "beneficiario")
+    @JsonIgnore
     private Set<Ayuda> ayudas;
 
     // Constructores
