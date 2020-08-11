@@ -8,7 +8,7 @@ public class Constantes {
 
     public static final String SECUENCIA_BENEFICIARIOS = "beneficiarios_seq";
     public static final String SECUENCIA_AYUDAS = "ayudas_seq";
-    public static final String SECUENCIA_CIUDADES = "ciudades";
+    public static final String SECUENCIA_CIUDADES = "ciudades_seq";
 
     public Constantes() {
         // Constructor privado para esconder el constructor público implícito
